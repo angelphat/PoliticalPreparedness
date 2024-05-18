@@ -17,5 +17,12 @@ class VoterInfoViewModel(private val dataSource: ElectionDao) : ViewModel() {
     /**
      * Hint: The saved state can be accomplished in multiple ways. It is directly related to how elections are saved/removed from the database.
      */
+    fun openWebsite() {
+        val url = "https://www.example.com"
 
+//        val intent = Intent(Intent.ACTION_VIEW)
+//        intent.data = Uri.parse(url)
+//
+//        startActivity(intent)
+    }
 }

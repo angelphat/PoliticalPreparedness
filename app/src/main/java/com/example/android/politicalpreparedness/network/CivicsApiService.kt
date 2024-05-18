@@ -5,6 +5,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://www.googleapis.com/civicinfo/v2/"
 
@@ -20,16 +22,29 @@ private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .build()
 
-/**
- *  Documentation for the Google Civics API Service can be found at https://developers.google.com/civic-information/docs/v2
- */
-
 interface CivicsApiService {
     //TODO: Add elections API Call
+    @GET("elections")
+    suspend fun getElection()
 
     //TODO: Add voterinfo API Call
+    @GET("voterinfo")
+    suspend fun getVoteInfo(
+        @Query("address") address:String,
+        @Query("electionId") electionId:String
+    )
 
     //TODO: Add representatives API Call
+    @GET("representatives")
+    suspend fun getRepresentativeAdrress(
+        @Query("address") address:String
+    )
+
+    @GET("representatives/ocdId")
+    suspend fun getRepresentativeOcId(
+        @Query("ocdId") ocdId:String
+    )
+
 }
 
 object CivicsApi {
